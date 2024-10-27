@@ -1,4 +1,3 @@
-// src/slices/capsuleLandingSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Capsule } from "@/app/types";
 

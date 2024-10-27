@@ -19,7 +19,6 @@ export interface FormValues {
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-
   setLocalCapsules: React.Dispatch<React.SetStateAction<Capsule[]>>;
 }
 
