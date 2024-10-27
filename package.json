@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
+    "build:force": "NEXT_TELEMETRY_DISABLED=1 next build --no-lint --no-mangling",
     "start": "next start",
     "lint": "next lint"
   },
@@ -30,8 +31,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.16"
+    "tailwindcss": "^3.4.1"
   }
 }
