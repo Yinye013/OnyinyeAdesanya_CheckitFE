@@ -26,7 +26,7 @@ const SidebarLayout: React.FC = () => {
   const [activeIcon, setActiveIcon] = useState("home");
 
   return (
-    <div className="sticky top-5rem flex flex-col items-center bg-slate-500 text-white  h-full pt-8 gap-[3rem]">
+    <div className="sticky top-5rem flex flex-col items-center bg-slate-500 text-white h-screen pt-8 gap-[3rem]">
       {icons.map(({ component: Icon, name }) => (
         <div
           key={name}

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 interface Capsule {
   capsule_id: string;
@@ -10,17 +10,18 @@ interface CapsuleProps {
 }
 
 const CapsuleInterface: React.FC<CapsuleProps> = ({ capsules }) => {
-  const totalCapsules = useMemo(() => capsules.length, [capsules]);
+  const safeCapsules = Array.isArray(capsules) ? capsules : [];
+  const totalCapsules = safeCapsules.length;
 
-  const totalActiveCapsules = useMemo(
-    () => capsules.filter((capsule) => capsule.status === "active").length,
-    [capsules]
-  );
+  console.log("capsules", capsules);
 
-  const totalDestroyedCapsules = useMemo(
-    () => capsules.filter((capsule) => capsule.status === "destroyed").length,
-    [capsules]
-  );
+  const totalActiveCapsules = safeCapsules.filter(
+    (capsule) => capsule.status === "active"
+  ).length;
+
+  const totalDestroyedCapsules = safeCapsules.filter(
+    (capsule) => capsule.status === "destroyed"
+  ).length;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 lg:gap-12 p-4">

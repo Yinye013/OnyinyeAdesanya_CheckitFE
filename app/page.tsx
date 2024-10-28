@@ -12,7 +12,7 @@ export default function Home() {
           <SidebarLayout />
         </div>
 
-        <div className="px-[2rem]">
+        <div className="px-[2rem] overflow-y-auto">
           <Landing />
         </div>
       </div>

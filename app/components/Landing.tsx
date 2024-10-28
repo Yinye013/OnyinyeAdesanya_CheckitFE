@@ -27,6 +27,7 @@ export default function Landing() {
   const dispatch = useDispatch();
   const { localCapsules, editableCapsule, isEditing, loading, error } =
     useSelector((state: RootState) => state.capsuleLanding);
+
   const {
     capsules: fetchedCapsules = [],
     loading: loadingCapsules,

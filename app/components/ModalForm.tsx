@@ -3,6 +3,8 @@ import { createPortal } from "react-dom";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Capsule } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
 import type { FormValues, ModalProps, ModalPortalProps } from "../types";
 import { convertToISODate } from "../utils/dateHelpers";
 
@@ -22,33 +24,37 @@ const validationSchema = Yup.object().shape({
 });
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, setLocalCapsules }) => {
-  if (!isOpen) return null;
+  const dispatch = useDispatch();
+  const localCapsules = useSelector(
+    (state: RootState) => state.capsuleLanding.localCapsules
+  );
 
   const initialValues: FormValues = {
     capsule_id: "",
     status: "",
     original_launch: "",
   };
-
+  if (!isOpen) return null;
   const handleSubmit = (
     values: typeof initialValues,
     { resetForm }: FormikHelpers<typeof initialValues>
   ): void => {
-    console.log("Form values:", values);
+    // console.log("Form values:", values);
     // Add the new capsule to the local state
     const newCapsule: Capsule = {
-      capsule_id: values.capsule_id,
+      capsule_id: values?.capsule_id,
       capsule_serial: "default_serial",
-      status: values.status.toLowerCase(),
-      original_launch: convertToISODate(values.original_launch),
+      status: values?.status?.toLowerCase(),
+      original_launch: convertToISODate(values?.original_launch),
       details: "",
       landings: 0,
       missions: [],
       type: "",
       reuse_count: 0,
     };
-
-    setLocalCapsules((prevCapsules) => [newCapsule, ...prevCapsules]);
+    // @ts-nocheck
+    const updatedCapsules = [newCapsule, ...localCapsules];
+    dispatch(setLocalCapsules(updatedCapsules));
     resetForm();
     onClose();
   };
