@@ -6,8 +6,8 @@ const Navbar: React.FC = () => {
   return (
     <nav className="h-[6rem] grid grid-cols-[0.09fr_1fr] md:grid-cols-[0.13fr_2fr] border-b text-gray-500 ">
       {/* Sidebar Toggle */}
-      <div className="flex justify-center items-center bg-gray-400">
-        <FaBars size={20} color="#FFFFFF" />
+      <div className="flex justify-center items-center bg-white">
+        {/* <FaBars size={20} color="#FFFFFF" /> */}
       </div>
 
       {/* Right Section */}
